@@ -1,0 +1,624 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>India Obesity Dashboard (1998-2021)</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #F5F7FA;
+            padding: 20px;
+            color: #2C3E50;
+        }
+
+        .container { max-width: 1400px; margin: 0 auto; }
+
+        .header {
+            background: linear-gradient(135deg, #2C3E50 0%, #3498DB 100%);
+            color: white;
+            padding: 50px 40px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .header h1 { font-size: 2.8em; margin-bottom: 10px; font-weight: 600; }
+        .header p { font-size: 1.1em; opacity: 0.95; }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+            border-left: 4px solid;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .stat-card.children { border-color: #FF6B9D; }
+        .stat-card.women { border-color: #4ECDC4; }
+        .stat-card.men { border-color: #556270; }
+        .stat-card.surveys { border-color: #F39C12; }
+
+        .stat-label {
+            color: #7F8C8D;
+            font-size: 0.95em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+        }
+
+        .stat-value {
+            font-size: 3em;
+            font-weight: 700;
+            margin: 10px 0;
+        }
+
+        .stat-value.children { color: #FF6B9D; }
+        .stat-value.women { color: #4ECDC4; }
+        .stat-value.men { color: #556270; }
+        .stat-value.surveys { color: #F39C12; }
+
+        .stat-change {
+            font-size: 1em;
+            color: #E74C3C;
+            font-weight: 500;
+        }
+
+        .chart-container {
+            background: white;
+            padding: 30px;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+        }
+
+        .chart-title {
+            font-size: 1.6em;
+            margin-bottom: 10px;
+            color: #2C3E50;
+            font-weight: 600;
+        }
+
+        .chart-subtitle {
+            font-size: 1em;
+            color: #7F8C8D;
+            margin-bottom: 20px;
+        }
+
+        .explanation-box {
+            background: #EBF5FB;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #3498DB;
+        }
+
+        .explanation-box h4 {
+            color: #2C3E50;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .explanation-box p, .explanation-box ul {
+            color: #2C3E50;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .explanation-box ul {
+            padding-left: 20px;
+        }
+
+        .height-selector {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .height-selector button {
+            flex: 1;
+            padding: 10px;
+            border: 2px solid #ddd;
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .height-selector button.active {
+            background: linear-gradient(135deg, #2C3E50 0%, #3498DB 100%);
+            color: white;
+            border-color: #2C3E50;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: #7F8C8D;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>India Obesity Dashboard</h1>
+            <p>Understanding Obesity Trends in India (1998-2021)</p>
+            <p style="font-size: 0.9em; margin-top: 10px; opacity: 0.9;">Based on DHS Survey Data - Interactive Analysis Tool</p>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card children">
+                <div class="stat-label">Children Overweight</div>
+                <div class="stat-value children">3.4%</div>
+                <div class="stat-change">+0.6% since 1998</div>
+            </div>
+            <div class="stat-card women">
+                <div class="stat-label">Women Overweight/Obese</div>
+                <div class="stat-value women">24.0%</div>
+                <div class="stat-change">+13.3% since 1998</div>
+            </div>
+            <div class="stat-card men">
+                <div class="stat-label">Men Overweight/Obese</div>
+                <div class="stat-value men">23.7%</div>
+                <div class="stat-change">Latest Survey (2019)</div>
+            </div>
+            <div class="stat-card surveys">
+                <div class="stat-label">Survey Years</div>
+                <div class="stat-value surveys">4</div>
+                <div class="stat-change">1998, 2005, 2015, 2019</div>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <div class="chart-title">Overall Obesity Trends in India</div>
+            <div class="chart-subtitle">How obesity rates have changed from 1998 to 2021</div>
+            <html>
+<head><meta charset="utf-8" /></head>
+<body>
+    <div>                            <div id="trend_chart" class="plotly-graph-div" style="height:500px; width:100%;"></div>            <script type="text/javascript">                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("trend_chart")) {                    Plotly.newPlot(                        "trend_chart",                        [{"hovertemplate":"Year: %{x}\u003cbr\u003eChildren: %{y:.1f}%\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#FF6B9D","width":4},"marker":{"size":12},"mode":"lines+markers+text","name":"Children Overweight","text":["2.8%","1.5%","2.1%","3.4%"],"textposition":"top center","x":[1998,2005,2015,2019],"y":[2.8,1.5,2.1,3.4],"type":"scatter"},{"hovertemplate":"Year: %{x}\u003cbr\u003eWomen: %{y:.1f}%\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#4ECDC4","width":4},"marker":{"size":12},"mode":"lines+markers+text","name":"Women Overweight\u002fObese","text":["10.7%","12.6%","20.7%","24.0%"],"textposition":"top center","x":[1998,2005,2015,2019],"y":[10.7,12.6,20.7,24.0],"type":"scatter"},{"hovertemplate":"Year: %{x}\u003cbr\u003eMen: %{y:.1f}%\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#556270","width":4},"marker":{"size":12},"mode":"lines+markers+text","name":"Men Overweight\u002fObese","text":["9.7%","19.6%","23.7%"],"textposition":"top center","x":[2005,2015,2019],"y":[9.7,19.6,23.7],"type":"scatter"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scattermap":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermap"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"white","showlakes":true,"showland":true,"subunitcolor":"#C8D4E3"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"paper_bgcolor":"white","plot_bgcolor":"white","polar":{"angularaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""},"bgcolor":"white","radialaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"yaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"zaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"ternary":{"aaxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"baxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"bgcolor":"white","caxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2}}},"font":{"size":14,"family":"Segoe UI"},"legend":{"orientation":"h","yanchor":"bottom","y":1.02,"xanchor":"center","x":0.5},"xaxis":{"title":{"text":"Survey Year"}},"yaxis":{"title":{"text":"Percentage (%)"}},"hovermode":"x unified","height":500,"plot_bgcolor":"white","paper_bgcolor":"white","showlegend":true},                        {"displayModeBar": false, "responsive": true}                    )                };            </script>        </div>
+</body>
+</html>
+
+            <div class="explanation-box">
+                <h4>What This Chart Shows:</h4>
+                <p>This chart tracks obesity rates across all of India over 23 years. Each line shows a different group:</p>
+                <ul>
+                    <li><strong>Pink line (Children):</strong> Percentage of children who are overweight</li>
+                    <li><strong>Teal line (Women):</strong> Percentage of women aged 15-49 who are overweight or obese</li>
+                    <li><strong>Gray line (Men):</strong> Percentage of men aged 15-54 who are overweight or obese (data from 2005 onwards)</li>
+                </ul>
+                <p><strong>Key Finding:</strong> Women's obesity has MORE THAN DOUBLED from 10.7% in 1998 to 24.0% in 2019. This is not genetic - it's due to lifestyle changes like more processed food, less physical activity, and more desk jobs.</p>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <div class="chart-title">City vs Village Comparison</div>
+            <div class="chart-subtitle">Why living in a city increases your risk</div>
+            <html>
+<head><meta charset="utf-8" /></head>
+<body>
+    <div>                            <div id="residence_chart" class="plotly-graph-div" style="height:550px; width:100%;"></div>            <script type="text/javascript">                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("residence_chart")) {                    Plotly.newPlot(                        "residence_chart",                        [{"marker":{"color":"#3498DB"},"name":"City\u002fUrban","text":["2.4%","2.5%","2.8%","4.2%"],"textposition":"outside","x":[1998,2005,2015,2019],"y":[2.4,2.5,2.8,4.2],"type":"bar","xaxis":"x","yaxis":"y"},{"marker":{"color":"#27AE60"},"name":"Village\u002fRural","text":["2.9%","1.2%","1.8%","3.1%"],"textposition":"outside","x":[1998,2005,2015,2019],"y":[2.9,1.2,1.8,3.1],"type":"bar","xaxis":"x","yaxis":"y"},{"marker":{"color":"#3498DB"},"name":"City\u002fUrban","showlegend":false,"text":["23.7%","23.5%","31.4%","33.3%"],"textposition":"outside","x":[1998,2005,2015,2019],"y":[23.7,23.5,31.4,33.3],"type":"bar","xaxis":"x2","yaxis":"y2"},{"marker":{"color":"#27AE60"},"name":"Village\u002fRural","showlegend":false,"text":["6.0%","7.4%","15.1%","19.7%"],"textposition":"outside","x":[1998,2005,2015,2019],"y":[6.0,7.4,15.1,19.7],"type":"bar","xaxis":"x2","yaxis":"y2"},{"marker":{"color":"#3498DB"},"name":"City\u002fUrban","showlegend":false,"text":["15.9%","26.6%","29.8%"],"textposition":"outside","x":[2005,2015,2019],"y":[15.9,26.6,29.8],"type":"bar","xaxis":"x3","yaxis":"y3"},{"marker":{"color":"#27AE60"},"name":"Village\u002fRural","showlegend":false,"text":["5.6%","14.3%","19.3%"],"textposition":"outside","x":[2005,2015,2019],"y":[5.6,14.3,19.3],"type":"bar","xaxis":"x3","yaxis":"y3"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scattermap":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermap"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"white","showlakes":true,"showland":true,"subunitcolor":"#C8D4E3"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"paper_bgcolor":"white","plot_bgcolor":"white","polar":{"angularaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""},"bgcolor":"white","radialaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"yaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"zaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"ternary":{"aaxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"baxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"bgcolor":"white","caxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2}}},"xaxis":{"anchor":"y","domain":[0.0,0.25333333333333335],"title":{"text":"Year"}},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"Percentage (%)"},"range":[0,40]},"xaxis2":{"anchor":"y2","domain":[0.37333333333333335,0.6266666666666667],"title":{"text":"Year"}},"yaxis2":{"anchor":"x2","domain":[0.0,1.0],"title":{"text":"Percentage (%)"},"range":[0,40]},"xaxis3":{"anchor":"y3","domain":[0.7466666666666667,1.0],"title":{"text":"Year"}},"yaxis3":{"anchor":"x3","domain":[0.0,1.0],"title":{"text":"Percentage (%)"},"range":[0,40]},"annotations":[{"font":{"size":16},"showarrow":false,"text":"Children Overweight","x":0.12666666666666668,"xanchor":"center","xref":"paper","y":1.0,"yanchor":"bottom","yref":"paper"},{"font":{"size":16},"showarrow":false,"text":"Women Overweight\u002fObese","x":0.5,"xanchor":"center","xref":"paper","y":1.0,"yanchor":"bottom","yref":"paper"},{"font":{"size":16},"showarrow":false,"text":"Men Overweight\u002fObese","x":0.8733333333333333,"xanchor":"center","xref":"paper","y":1.0,"yanchor":"bottom","yref":"paper"}],"font":{"size":12,"family":"Segoe UI"},"legend":{"orientation":"h","yanchor":"bottom","y":1.08,"xanchor":"center","x":0.5},"height":550,"barmode":"group","plot_bgcolor":"white","paper_bgcolor":"white"},                        {"displayModeBar": false, "responsive": true}                    )                };            </script>        </div>
+</body>
+</html>
+
+            <div class="explanation-box">
+                <h4>What This Chart Shows:</h4>
+                <p>This compares obesity rates between people living in cities (urban) vs villages (rural) over time.</p>
+
+                <p><strong>Latest Data (2019):</strong></p>
+                <ul>
+                    <li><strong>Women in cities:</strong> 33.3% obese</li>
+                    <li><strong>Women in villages:</strong> 19.7% obese</li>
+                    <li><strong>Difference:</strong> City women are 69% MORE likely to be obese!</li>
+                </ul>
+
+                <p><strong>Why Cities Are Riskier:</strong></p>
+                <ul>
+                    <li>Office jobs mean sitting all day (villages = farming/walking)</li>
+                    <li>Cars and metros instead of walking</li>
+                    <li>Easy access to fast food and restaurants</li>
+                    <li>Higher stress leading to comfort eating</li>
+                </ul>
+
+                <p><strong>What You Can Do (if you live in a city):</strong> You must INTENTIONALLY add physical activity. Take stairs, walk for short trips, pack home-cooked lunch, aim for 10,000 steps daily.</p>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <div class="chart-title">Education Level Impact</div>
+            <div class="chart-subtitle">How your education affects obesity risk (2019 data)</div>
+            <html>
+<head><meta charset="utf-8" /></head>
+<body>
+    <div>                            <div id="education_chart" class="plotly-graph-div" style="height:550px; width:100%;"></div>            <script type="text/javascript">                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("education_chart")) {                    Plotly.newPlot(                        "education_chart",                        [{"marker":{"color":"#FF6B9D"},"name":"Children","text":["2.9%","2.9%","3.4%","4.8%"],"textposition":"outside","x":["No Education","Primary School","High School","College\u002fUniversity"],"y":[2.9,2.9,3.4,4.8],"type":"bar"},{"marker":{"color":"#4ECDC4"},"name":"Women","text":["21.6%","26.0%","23.6%","27.8%"],"textposition":"outside","x":["No Education","Primary School","High School","College\u002fUniversity"],"y":[21.6,26.0,23.6,27.8],"type":"bar"},{"marker":{"color":"#556270"},"name":"Men","text":["17.7%","18.1%","22.3%","30.6%"],"textposition":"outside","x":["No Education","Primary School","High School","College\u002fUniversity"],"y":[17.7,18.1,22.3,30.6],"type":"bar"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scattermap":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermap"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"white","showlakes":true,"showland":true,"subunitcolor":"#C8D4E3"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"paper_bgcolor":"white","plot_bgcolor":"white","polar":{"angularaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""},"bgcolor":"white","radialaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"yaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"zaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"ternary":{"aaxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"baxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"bgcolor":"white","caxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2}}},"font":{"size":14,"family":"Segoe UI"},"legend":{"orientation":"h","yanchor":"bottom","y":1.02,"xanchor":"center","x":0.5},"yaxis":{"title":{"text":"Percentage (%)"},"range":[0,35]},"xaxis":{"title":{"text":"Education Level"}},"barmode":"group","height":550,"plot_bgcolor":"white","paper_bgcolor":"white"},                        {"displayModeBar": false, "responsive": true}                    )                };            </script>        </div>
+</body>
+</html>
+
+            <div class="explanation-box">
+                <h4>What This Chart Shows:</h4>
+                <p>This shows obesity rates based on how much schooling people have completed.</p>
+
+                <p><strong>Education Levels Explained:</strong></p>
+                <ul>
+                    <li><strong>No Education:</strong> Never went to school (21.6% obese)</li>
+                    <li><strong>Primary School:</strong> Completed elementary school (grades 1-5)</li>
+                    <li><strong>High School:</strong> Completed secondary school (grades 6-12)</li>
+                    <li><strong>College/University:</strong> Completed college or university (27.8% obese)</li>
+                </ul>
+
+                <p><strong>Surprising Finding:</strong> More education = HIGHER obesity! Why?</p>
+                <ul>
+                    <li>Educated people often have desk jobs (less physical activity)</li>
+                    <li>Higher income means more access to processed/restaurant food</li>
+                    <li>Urban lifestyle (most educated people live in cities)</li>
+                </ul>
+
+                <p><strong>Important:</strong> This doesn't mean education is bad! It means educated people need to be MORE careful about diet and exercise because their jobs and lifestyle put them at higher risk.</p>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <div class="chart-title">Obesity by Age Group</div>
+            <div class="chart-subtitle">How obesity increases as you get older (2019 data)</div>
+            <html>
+<head><meta charset="utf-8" /></head>
+<body>
+    <div>                            <div id="age_chart" class="plotly-graph-div" style="height:550px; width:100%;"></div>            <script type="text/javascript">                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("age_chart")) {                    Plotly.newPlot(                        "age_chart",                        [{"marker":{"color":"#4ECDC4"},"name":"Women","text":["5.4%","12.2%","21.5%","29.9%","34.0%","36.8%","37.0%"],"textposition":"outside","x":["15-19","20-24","25-29","30-34","35-39","40-44","45-49"],"y":[5.4,12.2,21.5,29.9,34.0,36.8,37.0],"type":"bar"},{"marker":{"color":"#556270"},"name":"Men","text":["6.6%","13.6%","22.6%","29.5%","31.4%","31.7%","32.5%"],"textposition":"outside","x":["15-19","20-24","25-29","30-34","35-39","40-44","45-49"],"y":[6.6,13.6,22.6,29.5,31.4,31.7,32.5],"type":"bar"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scattermap":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermap"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"white","showlakes":true,"showland":true,"subunitcolor":"#C8D4E3"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"paper_bgcolor":"white","plot_bgcolor":"white","polar":{"angularaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""},"bgcolor":"white","radialaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"yaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"zaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"ternary":{"aaxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"baxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"bgcolor":"white","caxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2}}},"font":{"size":14,"family":"Segoe UI"},"legend":{"orientation":"h","yanchor":"bottom","y":1.02,"xanchor":"center","x":0.5},"yaxis":{"title":{"text":"Percentage (%)"},"range":[0,45]},"xaxis":{"title":{"text":"Age Group (years)"}},"barmode":"group","height":550,"plot_bgcolor":"white","paper_bgcolor":"white"},                        {"displayModeBar": false, "responsive": true}                    )                };            </script>        </div>
+</body>
+</html>
+
+            <div class="explanation-box">
+                <h4>What This Chart Shows:</h4>
+                <p>This shows how obesity rates change with age. Each bar represents a 5-year age range.</p>
+
+                <p><strong>The Pattern:</strong></p>
+                <ul>
+                    <li><strong>Age 15-19 (teenagers):</strong> Only 5.4% obese</li>
+                    <li><strong>Age 45-49 (middle-aged):</strong> Up to 37.0% obese</li>
+                    <li><strong>That's a 31.6 percentage point increase!</strong></li>
+                </ul>
+
+                <p><strong>Why This Happens:</strong></p>
+                <ul>
+                    <li><strong>Slow weight gain:</strong> You gain 0.5-1 kg per year without noticing</li>
+                    <li><strong>Metabolism slows:</strong> Your body burns fewer calories as you age</li>
+                    <li><strong>Less active:</strong> Desk jobs, family responsibilities = less time to exercise</li>
+                    <li><strong>Adds up over time:</strong> Small changes each year = big change over 20-30 years</li>
+                </ul>
+
+                <p><strong>What You Can Do:</strong> Weigh yourself monthly. If you gain 2+ kg in 6 months, change something NOW. Don't wait until you're in your 40s - prevent it in your 20s and 30s!</p>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <div class="chart-title">Income Level Impact</div>
+            <div class="chart-subtitle">Why having more money increases obesity risk (2019 data)</div>
+            <html>
+<head><meta charset="utf-8" /></head>
+<body>
+    <div>                            <div id="wealth_chart" class="plotly-graph-div" style="height:550px; width:100%;"></div>            <script type="text/javascript">                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("wealth_chart")) {                    Plotly.newPlot(                        "wealth_chart",                        [{"marker":{"color":"#FF6B9D"},"name":"Children","text":["2.7%","2.9%","3.5%","3.8%","4.8%"],"textposition":"outside","x":["Poorest 20%","Low Income","Middle Income","Upper Income","Richest 20%"],"y":[2.7,2.9,3.5,3.8,4.8],"type":"bar"},{"marker":{"color":"#4ECDC4"},"name":"Women","text":["10.0%","16.4%","23.7%","30.5%","38.6%"],"textposition":"outside","x":["Poorest 20%","Low Income","Middle Income","Upper Income","Richest 20%"],"y":[10.0,16.4,23.7,30.5,38.6],"type":"bar"},{"marker":{"color":"#556270"},"name":"Men","text":["9.5%","15.0%","21.7%","29.8%","36.7%"],"textposition":"outside","x":["Poorest 20%","Low Income","Middle Income","Upper Income","Richest 20%"],"y":[9.5,15.0,21.7,29.8,36.7],"type":"bar"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scattermap":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermap"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"white","showlakes":true,"showland":true,"subunitcolor":"#C8D4E3"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"paper_bgcolor":"white","plot_bgcolor":"white","polar":{"angularaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""},"bgcolor":"white","radialaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"yaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"zaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"ternary":{"aaxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"baxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"bgcolor":"white","caxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2}}},"font":{"size":14,"family":"Segoe UI"},"legend":{"orientation":"h","yanchor":"bottom","y":1.02,"xanchor":"center","x":0.5},"yaxis":{"title":{"text":"Percentage (%)"},"range":[0,45]},"xaxis":{"title":{"text":"Income Level"}},"barmode":"group","height":550,"plot_bgcolor":"white","paper_bgcolor":"white"},                        {"displayModeBar": false, "responsive": true}                    )                };            </script>        </div>
+</body>
+</html>
+
+            <div class="explanation-box">
+                <h4>What This Chart Shows:</h4>
+                <p>This shows obesity rates based on household income. We divided everyone into 5 groups from poorest to richest.</p>
+
+                <p><strong>Income Groups Explained:</strong></p>
+                <ul>
+                    <li><strong>Poorest 20%:</strong> Lowest income families (10.0% obese)</li>
+                    <li><strong>Low Income:</strong> Below average income</li>
+                    <li><strong>Middle Income:</strong> Average income families</li>
+                    <li><strong>Upper Income:</strong> Above average income</li>
+                    <li><strong>Richest 20%:</strong> Highest income families (38.6% obese)</li>
+                </ul>
+
+                <p><strong>Shocking Result:</strong> Rich people have ALMOST 4X MORE obesity than poor people!</p>
+
+                <p><strong>Why More Money = More Weight:</strong></p>
+                <ul>
+                    <li><strong>Can afford fast food daily:</strong> Burgers, pizza, restaurant meals</li>
+                    <li><strong>Can afford a car:</strong> Drive instead of walk</li>
+                    <li><strong>Desk jobs:</strong> High-paying jobs usually mean sitting all day</li>
+                    <li><strong>Processed foods:</strong> More money = buy convenient packaged foods instead of cooking</li>
+                </ul>
+
+                <p><strong>The Lesson:</strong> If you can afford these things, you're at HIGHER risk. Use your money wisely - hire a trainer, buy a gym membership, order healthy meal prep, get regular health check-ups. Don't let wealth harm your health!</p>
+            </div>
+        </div>
+
+        <!-- BMI Calculator Section -->
+        <div class="chart-container" style="background: linear-gradient(135deg, #2C3E50 0%, #3498DB 100%); color: white;">
+            <div class="chart-title" style="color: white;">BMI Calculator & Risk Assessment</div>
+            <div class="chart-subtitle" style="color: rgba(255,255,255,0.9);">Calculate your Body Mass Index and understand your risk</div>
+
+            <div style="background: white; padding: 30px; border-radius: 10px; margin-top: 20px; color: #2C3E50;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+
+                    <!-- BMI Calculator -->
+                    <div>
+                        <h3 style="margin-bottom: 20px; color: #2C3E50;">Calculate Your BMI</h3>
+
+                        <div class="height-selector">
+                            <button id="btn-cm" class="active" onclick="switchHeightUnit('cm')">Centimeters (cm)</button>
+                            <button id="btn-feet" onclick="switchHeightUnit('feet')">Feet & Inches</button>
+                        </div>
+
+                        <div id="height-cm-input" style="margin-bottom: 15px;">
+                            <label style="display: block; margin-bottom: 5px; font-weight: 600;">Height (cm):</label>
+                            <input type="number" id="height-cm" placeholder="e.g., 165"
+                                   style="width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 6px; font-size: 1em;">
+                        </div>
+
+                        <div id="height-feet-input" style="display: none;">
+                            <label style="display: block; margin-bottom: 5px; font-weight: 600;">Height:</label>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                                <div>
+                                    <input type="number" id="height-feet" placeholder="Feet (e.g., 5)"
+                                           style="width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 6px; font-size: 1em;">
+                                </div>
+                                <div>
+                                    <input type="number" id="height-inches" placeholder="Inches (e.g., 6)"
+                                           style="width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 6px; font-size: 1em;">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="margin-bottom: 15px;">
+                            <label style="display: block; margin-bottom: 5px; font-weight: 600;">Weight (kg):</label>
+                            <input type="number" id="weight" placeholder="e.g., 70"
+                                   style="width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 6px; font-size: 1em;">
+                        </div>
+
+                        <div style="margin-bottom: 15px;">
+                            <label style="display: block; margin-bottom: 5px; font-weight: 600;">Age:</label>
+                            <input type="number" id="age" placeholder="e.g., 30"
+                                   style="width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 6px; font-size: 1em;">
+                        </div>
+
+                        <div style="margin-bottom: 15px;">
+                            <label style="display: block; margin-bottom: 5px; font-weight: 600;">Gender:</label>
+                            <select id="gender" style="width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 6px; font-size: 1em;">
+                                <option value="">Select...</option>
+                                <option value="female">Female</option>
+                                <option value="male">Male</option>
+                            </select>
+                        </div>
+
+                        <button onclick="calculateBMI()"
+                                style="width: 100%; padding: 15px; background: linear-gradient(135deg, #2C3E50 0%, #3498DB 100%);
+                                       color: white; border: none; border-radius: 6px; font-size: 1.1em; font-weight: 600;
+                                       cursor: pointer;">
+                            Calculate BMI
+                        </button>
+                    </div>
+
+                    <!-- Results Display -->
+                    <div>
+                        <h3 style="margin-bottom: 20px; color: #2C3E50;">Your Results</h3>
+
+                        <div id="bmi-result" style="display: none;">
+                            <div style="background: #ECF0F1; padding: 20px; border-radius: 8px; margin-bottom: 15px;">
+                                <div style="font-size: 0.9em; color: #7F8C8D; margin-bottom: 5px;">Your BMI</div>
+                                <div id="bmi-value" style="font-size: 3em; font-weight: 700; color: #2C3E50;"></div>
+                                <div id="bmi-category" style="font-size: 1.2em; font-weight: 600; margin-top: 10px;"></div>
+                            </div>
+
+                            <div id="risk-assessment" style="background: #FEF5E7; padding: 20px; border-radius: 8px; border-left: 4px solid #F39C12;">
+                                <h4 style="margin-bottom: 10px; color: #2C3E50;">Your Health Risk</h4>
+                                <div id="risk-details"></div>
+                            </div>
+
+                            <div id="comparison" style="background: #E8F8F5; padding: 20px; border-radius: 8px; margin-top: 15px; border-left: 4px solid #27AE60;">
+                                <h4 style="margin-bottom: 10px; color: #2C3E50;">Compared to India</h4>
+                                <div id="comparison-details"></div>
+                            </div>
+
+                            <div id="recommendations" style="background: #EBF5FB; padding: 20px; border-radius: 8px; margin-top: 15px; border-left: 4px solid #3498DB;">
+                                <h4 style="margin-bottom: 10px; color: #2C3E50;">What You Should Do</h4>
+                                <div id="recommendation-details"></div>
+                            </div>
+                        </div>
+
+                        <div id="bmi-placeholder" style="text-align: center; padding: 60px 20px; color: #BDC3C7;">
+                            <div style="font-size: 3em; margin-bottom: 10px;">📊</div>
+                            <div style="font-size: 1.1em;">Enter your details to calculate BMI</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BMI Reference Chart -->
+                <div style="margin-top: 30px; padding-top: 30px; border-top: 2px solid #ECF0F1;">
+                    <h3 style="margin-bottom: 20px; color: #2C3E50;">BMI Categories</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                        <div style="background: #E8F8F5; padding: 15px; border-radius: 6px; border-left: 4px solid #27AE60;">
+                            <div style="font-weight: 600; color: #27AE60;">Underweight</div>
+                            <div style="color: #7F8C8D;">BMI less than 18.5</div>
+                        </div>
+                        <div style="background: #E8F8F5; padding: 15px; border-radius: 6px; border-left: 4px solid #27AE60;">
+                            <div style="font-weight: 600; color: #27AE60;">Normal Weight</div>
+                            <div style="color: #7F8C8D;">BMI 18.5 - 24.9</div>
+                        </div>
+                        <div style="background: #FEF5E7; padding: 15px; border-radius: 6px; border-left: 4px solid #F39C12;">
+                            <div style="font-weight: 600; color: #F39C12;">Overweight</div>
+                            <div style="color: #7F8C8D;">BMI 25.0 - 29.9</div>
+                        </div>
+                        <div style="background: #FADBD8; padding: 15px; border-radius: 6px; border-left: 4px solid #E74C3C;">
+                            <div style="font-weight: 600; color: #E74C3C;">Obese</div>
+                            <div style="color: #7F8C8D;">BMI 30.0 or higher</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p><strong>Data Source:</strong> DHS Program India 2019-21</p>
+            <p style="margin-top: 10px;">All charts are interactive - hover to see exact values</p>
+        </div>
+    </div>
+
+    <script>
+        let currentHeightUnit = 'cm';
+
+        function switchHeightUnit(unit) {
+            currentHeightUnit = unit;
+
+            if (unit === 'cm') {
+                document.getElementById('btn-cm').classList.add('active');
+                document.getElementById('btn-feet').classList.remove('active');
+                document.getElementById('height-cm-input').style.display = 'block';
+                document.getElementById('height-feet-input').style.display = 'none';
+            } else {
+                document.getElementById('btn-feet').classList.add('active');
+                document.getElementById('btn-cm').classList.remove('active');
+                document.getElementById('height-feet-input').style.display = 'block';
+                document.getElementById('height-cm-input').style.display = 'none';
+            }
+        }
+
+        function calculateBMI() {
+            let height;
+
+            if (currentHeightUnit === 'cm') {
+                height = parseFloat(document.getElementById('height-cm').value);
+            } else {
+                const feet = parseFloat(document.getElementById('height-feet').value);
+                const inches = parseFloat(document.getElementById('height-inches').value);
+
+                if (!feet || !inches) {
+                    alert('Please enter both feet and inches');
+                    return;
+                }
+
+                // Convert feet and inches to cm
+                height = ((feet * 12) + inches) * 2.54;
+            }
+
+            const weight = parseFloat(document.getElementById('weight').value);
+            const age = parseInt(document.getElementById('age').value);
+            const gender = document.getElementById('gender').value;
+
+            if (!height || !weight || !age || !gender) {
+                alert('Please fill in all fields');
+                return;
+            }
+
+            // Calculate BMI
+            const heightInMeters = height / 100;
+            const bmi = weight / (heightInMeters * heightInMeters);
+
+            // Determine category
+            let category, categoryColor, riskLevel;
+            if (bmi < 18.5) {
+                category = 'Underweight';
+                categoryColor = '#3498DB';
+                riskLevel = 'low';
+            } else if (bmi < 25) {
+                category = 'Normal Weight';
+                categoryColor = '#27AE60';
+                riskLevel = 'low';
+            } else if (bmi < 30) {
+                category = 'Overweight';
+                categoryColor = '#F39C12';
+                riskLevel = 'medium';
+            } else {
+                category = 'Obese';
+                categoryColor = '#E74C3C';
+                riskLevel = 'high';
+            }
+
+            // Display results
+            document.getElementById('bmi-placeholder').style.display = 'none';
+            document.getElementById('bmi-result').style.display = 'block';
+            document.getElementById('bmi-value').textContent = bmi.toFixed(1);
+            document.getElementById('bmi-value').style.color = categoryColor;
+            document.getElementById('bmi-category').textContent = category;
+            document.getElementById('bmi-category').style.color = categoryColor;
+
+            // Risk assessment
+            let riskHTML = '';
+            if (riskLevel === 'high') {
+                riskHTML = `
+                    <div style="color: #E74C3C; font-weight: 600; margin-bottom: 10px;">HIGH RISK</div>
+                    <p>You are at increased risk for serious health problems:</p>
+                    <ul style="margin: 10px 0; padding-left: 20px;">
+                        <li>Type 2 Diabetes</li>
+                        <li>Heart Disease</li>
+                        <li>High Blood Pressure</li>
+                        <li>Joint Problems</li>
+                    </ul>
+                    <p style="margin-top: 10px;"><strong>What to do:</strong> See a doctor for health screening and start a weight loss plan today.</p>
+                `;
+            } else if (riskLevel === 'medium') {
+                riskHTML = `
+                    <div style="color: #F39C12; font-weight: 600; margin-bottom: 10px;">MEDIUM RISK</div>
+                    <p>You are overweight. Taking action now can prevent obesity.</p>
+                    <p style="margin-top: 10px;"><strong>What to do:</strong> Start walking 10,000 steps daily and reduce processed food.</p>
+                `;
+            } else {
+                riskHTML = `
+                    <div style="color: #27AE60; font-weight: 600; margin-bottom: 10px;">LOW RISK</div>
+                    <p>Your weight is in the healthy range. Keep it up!</p>
+                `;
+            }
+            document.getElementById('risk-details').innerHTML = riskHTML;
+
+            // Comparison
+            const genderText = gender === 'female' ? 'women' : 'men';
+            const nationalRate = gender === 'female' ? 24.0 : 23.7;
+
+            let comparisonHTML = `
+                <p>In India (2019 data):</p>
+                <ul style="margin: 10px 0; padding-left: 20px;">
+                    <li>Overall ${genderText}: ${nationalRate}% are overweight/obese</li>
+                    <li>City ${genderText}: ${gender === 'female' ? '33.3%' : '29.8%'}</li>
+                    <li>Village ${genderText}: ${gender === 'female' ? '19.7%' : '19.3%'}</li>
+                </ul>
+            `;
+            document.getElementById('comparison-details').innerHTML = comparisonHTML;
+
+            // Recommendations
+            let recommendHTML = '';
+            if (bmi >= 25) {
+                recommendHTML = `
+                    <ul style="margin: 0; padding-left: 20px;">
+                        <li>Walk 10,000 steps every day</li>
+                        <li>Eat home-cooked dal, roti, sabzi (not fast food)</li>
+                        <li>Lose ${(weight * 0.05).toFixed(1)}-${(weight * 0.10).toFixed(1)} kg (5-10% of your weight)</li>
+                        <li>Get checked for diabetes and blood pressure</li>
+                    </ul>
+                `;
+            } else {
+                recommendHTML = `
+                    <ul style="margin: 0; padding-left: 20px;">
+                        <li>Keep your healthy weight - weigh yourself monthly</li>
+                        <li>Stay active - 7,000+ steps daily</li>
+                        <li>Keep eating home-cooked traditional food</li>
+                    </ul>
+                `;
+            }
+            document.getElementById('recommendation-details').innerHTML = recommendHTML;
+        }
+    </script>
+</body>
+</html>

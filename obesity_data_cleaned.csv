@@ -1,0 +1,216 @@
+Country,Survey,Survey_Year,Survey_Start_Year,Survey_End_Year,Category,Subcategory,Characteristic,Children_Overweight_Pct,Women_Overweight_Pct,Men_Overweight_Pct,Has_Complete_Children_Data,Has_Complete_Women_Data,Has_Complete_Men_Data,Has_All_Metrics
+India,2019-21 DHS,2019,2019,2021,Total,Total,Total,3.4,24.0,23.7,True,True,True,True
+India,2019-21 DHS,2019,2019,2021,Residence,Urban,Residence : Urban,4.2,33.3,29.8,True,True,True,True
+India,2019-21 DHS,2019,2019,2021,Residence,Rural,Residence : Rural,3.1,19.7,19.3,True,True,True,True
+India,2019-21 DHS,2019,2019,2021,Education,No education,Education : No education,2.9,21.6,17.7,True,True,True,True
+India,2019-21 DHS,2019,2019,2021,Education,Primary,Education : Primary,2.9,26.0,18.1,True,True,True,True
+India,2019-21 DHS,2019,2019,2021,Education,Secondary,Education : Secondary,3.4,23.6,22.3,True,True,True,True
+India,2019-21 DHS,2019,2019,2021,Education,Higher,Education : Higher,4.8,27.8,30.6,True,True,True,True
+India,2019-21 DHS,2019,2019,2021,Wealth quintile,Lowest,Wealth quintile : Lowest,2.7,10.0,9.5,True,True,True,True
+India,2019-21 DHS,2019,2019,2021,Wealth quintile,Second,Wealth quintile : Second,2.9,16.4,15.0,True,True,True,True
+India,2019-21 DHS,2019,2019,2021,Wealth quintile,Middle,Wealth quintile : Middle,3.5,23.7,21.7,True,True,True,True
+India,2019-21 DHS,2019,2019,2021,Wealth quintile,Fourth,Wealth quintile : Fourth,3.8,30.5,29.8,True,True,True,True
+India,2019-21 DHS,2019,2019,2021,Wealth quintile,Highest,Wealth quintile : Highest,4.8,38.6,36.7,True,True,True,True
+India,2019-21 DHS,2019,2019,2021,Age (5-year groups),15-19,Age (5-year groups) : 15-19,,5.4,6.6,False,True,True,False
+India,2019-21 DHS,2019,2019,2021,Age (5-year groups),20-24,Age (5-year groups) : 20-24,,12.2,13.6,False,True,True,False
+India,2019-21 DHS,2019,2019,2021,Age (5-year groups),25-29,Age (5-year groups) : 25-29,,21.5,22.6,False,True,True,False
+India,2019-21 DHS,2019,2019,2021,Age (5-year groups),30-34,Age (5-year groups) : 30-34,,29.9,29.5,False,True,True,False
+India,2019-21 DHS,2019,2019,2021,Age (5-year groups),35-39,Age (5-year groups) : 35-39,,34.0,31.4,False,True,True,False
+India,2019-21 DHS,2019,2019,2021,Age (5-year groups),40-44,Age (5-year groups) : 40-44,,36.8,31.7,False,True,True,False
+India,2019-21 DHS,2019,2019,2021,Age (5-year groups),45-49,Age (5-year groups) : 45-49,,37.0,32.5,False,True,True,False
+India,2019-21 DHS,2019,2019,2021,States,New Delhi (L1),States : New Delhi (L1),4.0,41.4,38.0,True,True,True,True
+India,2019-21 DHS,2019,2019,2021,States,Haryana (L1),States : Haryana (L1),3.3,33.1,28.3,True,True,True,True
+India,2019-21 DHS,2019,2019,2021,States,Himachal Pradesh (L1),States : Himachal Pradesh (L1),5.7,30.4,30.6,True,True,True,True
+India,2019-21 DHS,2019,2019,2021,"Jammu, Kashmir & Ladakh","Jammu, Kashmir & Ladakh","Jammu, Kashmir & Ladakh",9.7,29.4,31.8,True,True,True,True
+India,2019-21 DHS,2019,2019,2021,States,Punjab (L1),States : Punjab (L1),4.1,40.8,32.3,True,True,True,True
+India,2019-21 DHS,2019,2019,2021,States,Rajasthan (L1),States : Rajasthan (L1),3.3,12.9,15.0,True,True,True,True
+India,2019-21 DHS,2019,2019,2021,"Madhya Pradesh, inc Chhattisgarh","Madhya Pradesh, inc Chhattisgarh","Madhya Pradesh, inc Chhattisgarh",2.6,15.9,15.4,True,True,True,True
+India,2019-21 DHS,2019,2019,2021,States,Madhya Pradesh (L1),States : Madhya Pradesh (L1),2.0,16.6,15.6,True,True,True,True
+India,2019-21 DHS,2019,2019,2021,States,Chhattisgarh (L1),States : Chhattisgarh (L1),4.0,14.1,15.0,True,True,True,True
+India,2019-21 DHS,2019,2019,2021,"Uttar Pradesh, inc Uttarakhand","Uttar Pradesh, inc Uttarakhand","Uttar Pradesh, inc Uttarakhand",3.1,21.8,18.9,True,True,True,True
+India,2019-21 DHS,2019,2019,2021,States,Uttar Pradesh (L1),States : Uttar Pradesh (L1),3.1,21.4,18.5,True,True,True,True
+India,2019-21 DHS,2019,2019,2021,States,Uttarakhand (L1),States : Uttarakhand (L1),4.1,29.8,27.1,True,True,True,True
+India,2019-21 DHS,2019,2019,2021,"Bihar, inc Jharkhand","Bihar, inc Jharkhand","Bihar, inc Jharkhand",2.5,15.0,14.7,True,True,True,True
+India,2019-21 DHS,2019,2019,2021,States,Bihar (L1),States : Bihar (L1),2.4,16.0,14.7,True,True,True,True
+India,2019-21 DHS,2019,2019,2021,States,Jharkhand (L1),States : Jharkhand (L1),2.8,11.9,15.1,True,True,True,True
+India,2019-21 DHS,2019,2019,2021,States,Odisha (L1),States : Odisha (L1),3.5,23.0,22.2,True,True,True,True
+India,2019-21 DHS,2019,2019,2021,States,West Bengal (L1),States : West Bengal (L1),4.3,22.8,16.2,True,True,True,True
+India,2019-21 DHS,2019,2019,2021,States,Arunachal Pradesh (L1),States : Arunachal Pradesh (L1),9.6,23.9,27.6,True,True,True,True
+India,2019-21 DHS,2019,2019,2021,States,Assam (L1),States : Assam (L1),4.8,15.2,16.2,True,True,True,True
+India,2019-21 DHS,2019,2019,2021,States,Manipur (L1),States : Manipur (L1),3.3,34.1,30.3,True,True,True,True
+India,2019-21 DHS,2019,2019,2021,States,Meghalaya (L1),States : Meghalaya (L1),4.0,11.5,13.9,True,True,True,True
+India,2019-21 DHS,2019,2019,2021,States,Mizoram (L1),States : Mizoram (L1),10.0,24.2,32.1,True,True,True,True
+India,2019-21 DHS,2019,2019,2021,States,Nagaland (L1),States : Nagaland (L1),4.9,14.4,23.9,True,True,True,True
+India,2019-21 DHS,2019,2019,2021,States,Sikkim (L1),States : Sikkim (L1),9.6,34.8,36.3,True,True,True,True
+India,2019-21 DHS,2019,2019,2021,States,Tripura (L1),States : Tripura (L1),8.2,21.6,23.5,True,True,True,True
+India,2019-21 DHS,2019,2019,2021,States,Goa (L1),States : Goa (L1),2.8,36.1,32.6,True,True,True,True
+India,2019-21 DHS,2019,2019,2021,States,Gujarat (L1),States : Gujarat (L1),3.9,22.7,20.0,True,True,True,True
+India,2019-21 DHS,2019,2019,2021,States,Maharashtra (L1),States : Maharashtra (L1),4.1,23.5,24.7,True,True,True,True
+India,2019-21 DHS,2019,2019,2021,Andhra Pradesh including Telangana,Andhra Pradesh including Telangana,Andhra Pradesh including Telangana,3.0,33.9,31.6,True,True,True,True
+India,2019-21 DHS,2019,2019,2021,States,Karnataka (L1),States : Karnataka (L1),3.2,30.2,30.9,True,True,True,True
+India,2019-21 DHS,2019,2019,2021,States,Kerala (L1),States : Kerala (L1),4.0,38.2,36.4,True,True,True,True
+India,2019-21 DHS,2019,2019,2021,States,Tamil Nadu (L1),States : Tamil Nadu (L1),4.3,40.5,37.1,True,True,True,True
+India,2019-21 DHS,2019,2019,2021,States,Andaman and Nicobar Islands (L1),States : Andaman and Nicobar Islands (L1),5.4,38.1,45.3,True,True,True,True
+India,2019-21 DHS,2019,2019,2021,States,Chandigarh (L1),States : Chandigarh (L1),1.8,44.0,34.4,True,True,True,True
+India,2019-21 DHS,2019,2019,2021,States,Lakshadweep (L1),States : Lakshadweep (L1),10.5,33.5,41.3,True,True,True,True
+India,2019-21 DHS,2019,2019,2021,States,Puducherry (L1),States : Puducherry (L1),3.8,46.3,43.3,True,True,True,True
+India,2019-21 DHS,2019,2019,2021,States,Andhra Pradesh (L1),States : Andhra Pradesh (L1),2.7,36.3,31.1,True,True,True,True
+India,2019-21 DHS,2019,2019,2021,States,Telangana (L1),States : Telangana (L1),3.4,30.1,32.4,True,True,True,True
+India,2019-21 DHS,2019,2019,2021,States,Jammu & Kashmir (L1),States : Jammu & Kashmir (L1),9.6,29.4,31.7,True,True,True,True
+India,2019-21 DHS,2019,2019,2021,States,Ladakh (L1),States : Ladakh (L1),13.4,28.3,37.8,True,True,True,True
+India,2019-21 DHS,2019,2019,2021,States,"Dadra and Nagar Haveli, Daman and Diu (L1)","States : Dadra and Nagar Haveli, Daman and Diu (L1)",1.9,26.9,21.4,True,True,True,True
+India,2015-16 DHS,2015,2015,2016,Total,Total,Total,2.1,20.7,19.6,True,True,True,True
+India,2015-16 DHS,2015,2015,2016,Residence,Urban,Residence : Urban,2.8,31.4,26.6,True,True,True,True
+India,2015-16 DHS,2015,2015,2016,Residence,Rural,Residence : Rural,1.8,15.1,14.3,True,True,True,True
+India,2015-16 DHS,2015,2015,2016,Education,No education,Education : No education,1.5,16.8,11.9,True,True,True,True
+India,2015-16 DHS,2015,2015,2016,Education,Primary,Education : Primary,1.7,21.7,16.4,True,True,True,True
+India,2015-16 DHS,2015,2015,2016,Education,Secondary,Education : Secondary,2.1,21.3,18.0,True,True,True,True
+India,2015-16 DHS,2015,2015,2016,Education,Higher,Education : Higher,3.8,25.8,28.4,True,True,True,True
+India,2015-16 DHS,2015,2015,2016,Wealth quintile,Lowest,Wealth quintile : Lowest,1.5,5.8,4.7,True,True,True,True
+India,2015-16 DHS,2015,2015,2016,Wealth quintile,Second,Wealth quintile : Second,1.6,11.4,9.8,True,True,True,True
+India,2015-16 DHS,2015,2015,2016,Wealth quintile,Middle,Wealth quintile : Middle,2.0,18.7,16.6,True,True,True,True
+India,2015-16 DHS,2015,2015,2016,Wealth quintile,Fourth,Wealth quintile : Fourth,2.5,28.2,24.4,True,True,True,True
+India,2015-16 DHS,2015,2015,2016,Wealth quintile,Highest,Wealth quintile : Highest,3.3,36.2,32.7,True,True,True,True
+India,2015-16 DHS,2015,2015,2016,Age (5-year groups),15-19,Age (5-year groups) : 15-19,,4.2,4.8,False,True,True,False
+India,2015-16 DHS,2015,2015,2016,Age (5-year groups),20-24,Age (5-year groups) : 20-24,,10.1,11.4,False,True,True,False
+India,2015-16 DHS,2015,2015,2016,Age (5-year groups),25-29,Age (5-year groups) : 25-29,,18.4,18.6,False,True,True,False
+India,2015-16 DHS,2015,2015,2016,Age (5-year groups),30-34,Age (5-year groups) : 30-34,,25.8,23.5,False,True,True,False
+India,2015-16 DHS,2015,2015,2016,Age (5-year groups),35-39,Age (5-year groups) : 35-39,,29.6,26.8,False,True,True,False
+India,2015-16 DHS,2015,2015,2016,Age (5-year groups),40-44,Age (5-year groups) : 40-44,,33.1,28.1,False,True,True,False
+India,2015-16 DHS,2015,2015,2016,Age (5-year groups),45-49,Age (5-year groups) : 45-49,,34.4,28.0,False,True,True,False
+India,2015-16 DHS,2015,2015,2016,States,New Delhi (L1),States : New Delhi (L1),1.2,33.5,24.6,True,True,True,True
+India,2015-16 DHS,2015,2015,2016,States,Haryana (L1),States : Haryana (L1),3.1,21.0,20.0,True,True,True,True
+India,2015-16 DHS,2015,2015,2016,States,Himachal Pradesh (L1),States : Himachal Pradesh (L1),1.9,28.7,22.0,True,True,True,True
+India,2015-16 DHS,2015,2015,2016,States,"Jammu, Kashmir & Ladakh (L1)","States : Jammu, Kashmir & Ladakh (L1)",5.6,29.1,20.5,True,True,True,True
+India,2015-16 DHS,2015,2015,2016,States,Punjab (L1),States : Punjab (L1),2.3,31.3,27.8,True,True,True,True
+India,2015-16 DHS,2015,2015,2016,States,Rajasthan (L1),States : Rajasthan (L1),2.1,14.1,13.2,True,True,True,True
+India,2015-16 DHS,2015,2015,2016,"Madhya Pradesh, inc Chhattisgarh","Madhya Pradesh, inc Chhattisgarh","Madhya Pradesh, inc Chhattisgarh",2.0,13.2,10.7,True,True,True,True
+India,2015-16 DHS,2015,2015,2016,States,Madhya Pradesh (L1),States : Madhya Pradesh (L1),1.7,13.6,10.9,True,True,True,True
+India,2015-16 DHS,2015,2015,2016,States,Chhattisgarh (L1),States : Chhattisgarh (L1),2.9,11.9,10.2,True,True,True,True
+India,2015-16 DHS,2015,2015,2016,"Uttar Pradesh, inc Uttarakhand","Uttar Pradesh, inc Uttarakhand","Uttar Pradesh, inc Uttarakhand",1.6,16.7,12.8,True,True,True,True
+India,2015-16 DHS,2015,2015,2016,States,Uttar Pradesh (L1),States : Uttar Pradesh (L1),1.5,16.5,12.5,True,True,True,True
+India,2015-16 DHS,2015,2015,2016,States,Uttarakhand (L1),States : Uttarakhand (L1),3.5,20.5,17.7,True,True,True,True
+India,2015-16 DHS,2015,2015,2016,"Bihar, inc Jharkhand","Bihar, inc Jharkhand","Bihar, inc Jharkhand",1.2,11.3,12.2,True,True,True,True
+India,2015-16 DHS,2015,2015,2016,States,Bihar (L1),States : Bihar (L1),1.2,11.7,12.6,True,True,True,True
+India,2015-16 DHS,2015,2015,2016,States,Jharkhand (L1),States : Jharkhand (L1),1.5,10.3,11.1,True,True,True,True
+India,2015-16 DHS,2015,2015,2016,States,Odisha (L1),States : Odisha (L1),2.6,16.5,17.3,True,True,True,True
+India,2015-16 DHS,2015,2015,2016,States,West Bengal (L1),States : West Bengal (L1),2.1,19.9,14.2,True,True,True,True
+India,2015-16 DHS,2015,2015,2016,States,Arunachal Pradesh (L1),States : Arunachal Pradesh (L1),4.9,18.8,20.6,True,True,True,True
+India,2015-16 DHS,2015,2015,2016,States,Assam (L1),States : Assam (L1),2.3,13.2,12.9,True,True,True,True
+India,2015-16 DHS,2015,2015,2016,States,Manipur (L1),States : Manipur (L1),3.1,26.0,19.8,True,True,True,True
+India,2015-16 DHS,2015,2015,2016,States,Meghalaya (L1),States : Meghalaya (L1),3.9,12.2,10.0,True,True,True,True
+India,2015-16 DHS,2015,2015,2016,States,Mizoram (L1),States : Mizoram (L1),4.2,21.1,20.9,True,True,True,True
+India,2015-16 DHS,2015,2015,2016,States,Nagaland (L1),States : Nagaland (L1),3.8,16.2,13.9,True,True,True,True
+India,2015-16 DHS,2015,2015,2016,States,Sikkim (L1),States : Sikkim (L1),8.6,26.7,34.8,True,True,True,True
+India,2015-16 DHS,2015,2015,2016,States,Tripura (L1),States : Tripura (L1),3.0,16.0,15.9,True,True,True,True
+India,2015-16 DHS,2015,2015,2016,States,Goa (L1),States : Goa (L1),3.7,33.5,32.7,True,True,True,True
+India,2015-16 DHS,2015,2015,2016,States,Gujarat (L1),States : Gujarat (L1),1.9,23.8,19.7,True,True,True,True
+India,2015-16 DHS,2015,2015,2016,States,Maharashtra (L1),States : Maharashtra (L1),1.9,23.4,23.8,True,True,True,True
+India,2015-16 DHS,2015,2015,2016,Andhra Pradesh including Telangana,Andhra Pradesh including Telangana,Andhra Pradesh including Telangana,1.0,31.3,29.6,True,True,True,True
+India,2015-16 DHS,2015,2015,2016,States,Karnataka (L1),States : Karnataka (L1),2.6,23.3,22.1,True,True,True,True
+India,2015-16 DHS,2015,2015,2016,States,Kerala (L1),States : Kerala (L1),3.4,32.4,28.5,True,True,True,True
+India,2015-16 DHS,2015,2015,2016,States,Tamil Nadu (L1),States : Tamil Nadu (L1),5.0,30.9,28.2,True,True,True,True
+India,2015-16 DHS,2015,2015,2016,States,Andaman and Nicobar Islands (L1),States : Andaman and Nicobar Islands (L1),3.0,31.8,38.2,True,True,True,True
+India,2015-16 DHS,2015,2015,2016,States,Chandigarh (L1),States : Chandigarh (L1),1.1,41.4,32.0,True,True,True,True
+India,2015-16 DHS,2015,2015,2016,States,Dadra and Nagar Haveli (L1),States : Dadra and Nagar Haveli (L1),4.5,19.2,22.9,True,True,True,True
+India,2015-16 DHS,2015,2015,2016,States,Daman and Diu (L1),States : Daman and Diu (L1),2.1,31.7,30.7,True,True,True,True
+India,2015-16 DHS,2015,2015,2016,States,Lakshadweep (L1),States : Lakshadweep (L1),1.6,40.6,24.1,True,True,True,True
+India,2015-16 DHS,2015,2015,2016,States,Puducherry (L1),States : Puducherry (L1),2.2,36.7,37.1,True,True,True,True
+India,2015-16 DHS,2015,2015,2016,States,Andhra Pradesh (L1),States : Andhra Pradesh (L1),1.2,33.2,33.5,True,True,True,True
+India,2015-16 DHS,2015,2015,2016,States,Telangana (L1),States : Telangana (L1),0.7,28.7,24.2,True,True,True,True
+India,2005-06 DHS,2005,2005,2006,Total,Total,Total,1.5,12.6,9.7,True,True,True,True
+India,2005-06 DHS,2005,2005,2006,Residence,Urban,Residence : Urban,2.5,23.5,15.9,True,True,True,True
+India,2005-06 DHS,2005,2005,2006,Residence,Rural,Residence : Rural,1.2,7.4,5.6,True,True,True,True
+India,2005-06 DHS,2005,2005,2006,Education,No education,Education : No education,1.1,7.3,3.6,True,True,True,True
+India,2005-06 DHS,2005,2005,2006,Education,Primary,Education : Primary,1.3,12.2,5.6,True,True,True,True
+India,2005-06 DHS,2005,2005,2006,Education,Secondary,Education : Secondary,2.1,15.9,9.4,True,True,True,True
+India,2005-06 DHS,2005,2005,2006,Education,Higher,Education : Higher,2.7,26.7,21.9,True,True,True,True
+India,2005-06 DHS,2005,2005,2006,Wealth quintile,Lowest,Wealth quintile : Lowest,1.0,1.8,1.4,True,True,True,True
+India,2005-06 DHS,2005,2005,2006,Wealth quintile,Second,Wealth quintile : Second,1.1,3.9,2.2,True,True,True,True
+India,2005-06 DHS,2005,2005,2006,Wealth quintile,Middle,Wealth quintile : Middle,1.3,7.4,5.0,True,True,True,True
+India,2005-06 DHS,2005,2005,2006,Wealth quintile,Fourth,Wealth quintile : Fourth,2.1,15.4,10.2,True,True,True,True
+India,2005-06 DHS,2005,2005,2006,Wealth quintile,Highest,Wealth quintile : Highest,2.7,30.5,23.6,True,True,True,True
+India,2005-06 DHS,2005,2005,2006,Age (5-year groups),15-19,Age (5-year groups) : 15-19,,2.4,1.7,False,True,True,False
+India,2005-06 DHS,2005,2005,2006,Age (5-year groups),20-24,Age (5-year groups) : 20-24,,5.8,4.7,False,True,True,False
+India,2005-06 DHS,2005,2005,2006,Age (5-year groups),25-29,Age (5-year groups) : 25-29,,10.6,8.6,False,True,True,False
+India,2005-06 DHS,2005,2005,2006,Age (5-year groups),30-34,Age (5-year groups) : 30-34,,15.3,11.9,False,True,True,False
+India,2005-06 DHS,2005,2005,2006,Age (5-year groups),35-39,Age (5-year groups) : 35-39,,19.6,14.2,False,True,True,False
+India,2005-06 DHS,2005,2005,2006,Age (5-year groups),40-44,Age (5-year groups) : 40-44,,23.0,14.7,False,True,True,False
+India,2005-06 DHS,2005,2005,2006,Age (5-year groups),45-49,Age (5-year groups) : 45-49,,24.7,15.8,False,True,True,False
+India,2005-06 DHS,2005,2005,2006,States,New Delhi (L1),States : New Delhi (L1),4.0,26.4,16.8,True,True,True,True
+India,2005-06 DHS,2005,2005,2006,States,Haryana (L1),States : Haryana (L1),1.4,17.4,10.8,True,True,True,True
+India,2005-06 DHS,2005,2005,2006,States,Himachal Pradesh (L1),States : Himachal Pradesh (L1),1.1,13.5,10.6,True,True,True,True
+India,2005-06 DHS,2005,2005,2006,States,"Jammu, Kashmir & Ladakh (L1)","States : Jammu, Kashmir & Ladakh (L1)",2.3,16.7,6.2,True,True,True,True
+India,2005-06 DHS,2005,2005,2006,States,Punjab (L1),States : Punjab (L1),1.5,29.9,22.2,True,True,True,True
+India,2005-06 DHS,2005,2005,2006,States,Rajasthan (L1),States : Rajasthan (L1),1.6,8.9,6.2,True,True,True,True
+India,2005-06 DHS,2005,2005,2006,"Madhya Pradesh, inc Chhattisgarh","Madhya Pradesh, inc Chhattisgarh","Madhya Pradesh, inc Chhattisgarh",1.1,7.0,4.5,True,True,True,True
+India,2005-06 DHS,2005,2005,2006,States,Madhya Pradesh (L1),States : Madhya Pradesh (L1),1.0,7.6,4.3,True,True,True,True
+India,2005-06 DHS,2005,2005,2006,States,Chhattisgarh (L1),States : Chhattisgarh (L1),1.3,5.6,4.9,True,True,True,True
+India,2005-06 DHS,2005,2005,2006,"Uttar Pradesh, inc Uttarakhand","Uttar Pradesh, inc Uttarakhand","Uttar Pradesh, inc Uttarakhand",1.3,9.4,7.3,True,True,True,True
+India,2005-06 DHS,2005,2005,2006,States,Uttar Pradesh (L1),States : Uttar Pradesh (L1),1.2,9.2,7.3,True,True,True,True
+India,2005-06 DHS,2005,2005,2006,States,Uttarakhand (L1),States : Uttarakhand (L1),2.3,12.8,7.9,True,True,True,True
+India,2005-06 DHS,2005,2005,2006,"Bihar, inc Jharkhand","Bihar, inc Jharkhand","Bihar, inc Jharkhand",0.3,4.8,5.9,True,True,True,True
+India,2005-06 DHS,2005,2005,2006,States,Bihar (L1),States : Bihar (L1),0.3,4.6,6.3,True,True,True,True
+India,2005-06 DHS,2005,2005,2006,States,Jharkhand (L1),States : Jharkhand (L1),0.6,5.4,4.9,True,True,True,True
+India,2005-06 DHS,2005,2005,2006,States,Odisha (L1),States : Odisha (L1),1.7,6.6,6.0,True,True,True,True
+India,2005-06 DHS,2005,2005,2006,States,West Bengal (L1),States : West Bengal (L1),1.9,11.4,5.5,True,True,True,True
+India,2005-06 DHS,2005,2005,2006,States,Arunachal Pradesh (L1),States : Arunachal Pradesh (L1),3.4,8.8,7.1,True,True,True,True
+India,2005-06 DHS,2005,2005,2006,States,Assam (L1),States : Assam (L1),1.2,7.8,5.0,True,True,True,True
+India,2005-06 DHS,2005,2005,2006,States,Manipur (L1),States : Manipur (L1),2.2,13.3,9.2,True,True,True,True
+India,2005-06 DHS,2005,2005,2006,States,Meghalaya (L1),States : Meghalaya (L1),2.6,5.3,5.9,True,True,True,True
+India,2005-06 DHS,2005,2005,2006,States,Mizoram (L1),States : Mizoram (L1),4.3,10.6,11.4,True,True,True,True
+India,2005-06 DHS,2005,2005,2006,States,Nagaland (L1),States : Nagaland (L1),4.7,6.4,5.7,True,True,True,True
+India,2005-06 DHS,2005,2005,2006,States,Sikkim (L1),States : Sikkim (L1),8.3,15.4,11.9,True,True,True,True
+India,2005-06 DHS,2005,2005,2006,States,Tripura (L1),States : Tripura (L1),2.2,7.1,4.8,True,True,True,True
+India,2005-06 DHS,2005,2005,2006,States,Goa (L1),States : Goa (L1),4.3,20.2,15.4,True,True,True,True
+India,2005-06 DHS,2005,2005,2006,States,Gujarat (L1),States : Gujarat (L1),1.2,16.7,11.3,True,True,True,True
+India,2005-06 DHS,2005,2005,2006,States,Maharashtra (L1),States : Maharashtra (L1),2.8,14.5,11.9,True,True,True,True
+India,2005-06 DHS,2005,2005,2006,States,Andhra Pradesh including Telangana (L1),States : Andhra Pradesh including Telangana (L1),2.2,15.6,13.6,True,True,True,True
+India,2005-06 DHS,2005,2005,2006,States,Karnataka (L1),States : Karnataka (L1),2.6,15.3,10.9,True,True,True,True
+India,2005-06 DHS,2005,2005,2006,States,Kerala (L1),States : Kerala (L1),1.2,28.1,17.8,True,True,True,True
+India,2005-06 DHS,2005,2005,2006,States,Tamil Nadu (L1),States : Tamil Nadu (L1),3.6,20.9,14.5,True,True,True,True
+India,1998-99 DHS,1998,1998,1999,Total,Total,Total,2.8,10.7,,True,True,False,False
+India,1998-99 DHS,1998,1998,1999,Residence,Urban,Residence : Urban,2.4,23.7,,True,True,False,False
+India,1998-99 DHS,1998,1998,1999,Residence,Rural,Residence : Rural,2.9,6.0,,True,True,False,False
+India,1998-99 DHS,1998,1998,1999,Education,No education,Education : No education,2.8,4.9,,True,True,False,False
+India,1998-99 DHS,1998,1998,1999,Education,Primary,Education : Primary,2.0,11.0,,True,True,False,False
+India,1998-99 DHS,1998,1998,1999,Education,Secondary,Education : Secondary,3.2,17.7,,True,True,False,False
+India,1998-99 DHS,1998,1998,1999,Education,Higher,Education : Higher,2.8,29.3,,True,True,False,False
+India,1998-99 DHS,1998,1998,1999,Wealth quintile,Lowest,Wealth quintile : Lowest,2.8,1.5,,True,True,False,False
+India,1998-99 DHS,1998,1998,1999,Wealth quintile,Second,Wealth quintile : Second,2.6,2.4,,True,True,False,False
+India,1998-99 DHS,1998,1998,1999,Wealth quintile,Middle,Wealth quintile : Middle,2.3,5.2,,True,True,False,False
+India,1998-99 DHS,1998,1998,1999,Wealth quintile,Fourth,Wealth quintile : Fourth,3.1,11.8,,True,True,False,False
+India,1998-99 DHS,1998,1998,1999,Wealth quintile,Highest,Wealth quintile : Highest,3.1,31.2,,True,True,False,False
+India,1998-99 DHS,1998,1998,1999,Age (5-year groups),15-19,Age (5-year groups) : 15-19,,1.5,,False,True,False,False
+India,1998-99 DHS,1998,1998,1999,Age (5-year groups),20-24,Age (5-year groups) : 20-24,,3.3,,False,True,False,False
+India,1998-99 DHS,1998,1998,1999,Age (5-year groups),25-29,Age (5-year groups) : 25-29,,7.3,,False,True,False,False
+India,1998-99 DHS,1998,1998,1999,Age (5-year groups),30-34,Age (5-year groups) : 30-34,,11.8,,False,True,False,False
+India,1998-99 DHS,1998,1998,1999,Age (5-year groups),35-39,Age (5-year groups) : 35-39,,14.9,,False,True,False,False
+India,1998-99 DHS,1998,1998,1999,Age (5-year groups),40-44,Age (5-year groups) : 40-44,,17.4,,False,True,False,False
+India,1998-99 DHS,1998,1998,1999,Age (5-year groups),45-49,Age (5-year groups) : 45-49,,19.4,,False,True,False,False
+India,1998-99 DHS,1998,1998,1999,States,New Delhi (L1),States : New Delhi (L1),4.2,34.0,,True,True,False,False
+India,1998-99 DHS,1998,1998,1999,States,Haryana (L1),States : Haryana (L1),6.0,16.6,,True,True,False,False
+India,1998-99 DHS,1998,1998,1999,States,Himachal Pradesh (L1),States : Himachal Pradesh (L1),3.5,13.2,,True,True,False,False
+India,1998-99 DHS,1998,1998,1999,States,"Jammu, Kashmir & Ladakh (L1)","States : Jammu, Kashmir & Ladakh (L1)",5.0,13.7,,True,True,False,False
+India,1998-99 DHS,1998,1998,1999,States,Punjab (L1),States : Punjab (L1),6.0,30.5,,True,True,False,False
+India,1998-99 DHS,1998,1998,1999,States,Rajasthan (L1),States : Rajasthan (L1),1.9,7.1,,True,True,False,False
+India,1998-99 DHS,1998,1998,1999,States,"Madhya Pradesh, inc Chhattisgarh (L1)","States : Madhya Pradesh, inc Chhattisgarh (L1)",2.3,6.0,,True,True,False,False
+India,1998-99 DHS,1998,1998,1999,States,"Uttar Pradesh, inc Uttarakhand (L1)","States : Uttar Pradesh, inc Uttarakhand (L1)",1.8,7.5,,True,True,False,False
+India,1998-99 DHS,1998,1998,1999,States,"Bihar, inc Jharkhand (L1)","States : Bihar, inc Jharkhand (L1)",4.0,3.7,,True,True,False,False
+India,1998-99 DHS,1998,1998,1999,States,Odisha (L1),States : Odisha (L1),0.7,4.4,,True,True,False,False
+India,1998-99 DHS,1998,1998,1999,States,West Bengal (L1),States : West Bengal (L1),2.5,8.3,,True,True,False,False
+India,1998-99 DHS,1998,1998,1999,States,Arunachal Pradesh (L1),States : Arunachal Pradesh (L1),3.1,5.1,,True,True,False,False
+India,1998-99 DHS,1998,1998,1999,States,Assam (L1),States : Assam (L1),20.7,4.2,,True,True,False,False
+India,1998-99 DHS,1998,1998,1999,States,Manipur (L1),States : Manipur (L1),3.6,10.7,,True,True,False,False
+India,1998-99 DHS,1998,1998,1999,States,Meghalaya (L1),States : Meghalaya (L1),6.1,5.8,,True,True,False,False
+India,1998-99 DHS,1998,1998,1999,States,Mizoram (L1),States : Mizoram (L1),5.3,5.3,,True,True,False,False
+India,1998-99 DHS,1998,1998,1999,States,Nagaland (L1),States : Nagaland (L1),7.2,8.7,,True,True,False,False
+India,1998-99 DHS,1998,1998,1999,States,Sikkim (L1),States : Sikkim (L1),5.3,15.3,,True,True,False,False
+India,1998-99 DHS,1998,1998,1999,States,Tripura (L1),States : Tripura (L1),4.2,8.3,,True,True,False,False
+India,1998-99 DHS,1998,1998,1999,States,Goa (L1),States : Goa (L1),1.3,21.4,,True,True,False,False
+India,1998-99 DHS,1998,1998,1999,States,Gujarat (L1),States : Gujarat (L1),3.0,15.9,,True,True,False,False
+India,1998-99 DHS,1998,1998,1999,States,Maharashtra (L1),States : Maharashtra (L1),0.8,11.9,,True,True,False,False
+India,1998-99 DHS,1998,1998,1999,States,Andhra Pradesh including Telangana (L1),States : Andhra Pradesh including Telangana (L1),2.5,12.1,,True,True,False,False
+India,1998-99 DHS,1998,1998,1999,States,Karnataka (L1),States : Karnataka (L1),2.3,13.7,,True,True,False,False
+India,1998-99 DHS,1998,1998,1999,States,Kerala (L1),States : Kerala (L1),2.6,20.9,,True,True,False,False
+India,1998-99 DHS,1998,1998,1999,States,Tamil Nadu (L1),States : Tamil Nadu (L1),2.6,14.7,,True,True,False,False
